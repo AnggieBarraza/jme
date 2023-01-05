@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:jme/model/CharacterContainer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Ricky and Morty'),
     );
   }
 }
@@ -49,6 +50,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
+
+  // Future<List<CharacterContainer>> fetchAlbum() async {
+  //   final response = await http.get(Uri.parse(
+  //       'https://rickandmortyapi.com/api/character'));
+  //
+  //   if (response.statusCode == 200) {
+  //     final List result = json.decode(response.body);
+  //     return result.map((e) => CharacterContainer.fromJson(e)).toList();
+  //   } else {
+  //     throw Exception('Failed to load data');
+  //   }
+  // }
 
   void _incrementCounter() {
     setState(() {

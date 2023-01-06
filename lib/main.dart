@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-// import 'package:jme/model/CharacterContainer.dart';
+import 'package:jme/model/CharacterContainer.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -52,17 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
 
-  // Future<List<CharacterContainer>> fetchAlbum() async {
-  //   final response = await http.get(Uri.parse(
-  //       'https://rickandmortyapi.com/api/character'));
-  //
-  //   if (response.statusCode == 200) {
-  //     final List result = json.decode(response.body);
-  //     return result.map((e) => CharacterContainer.fromJson(e)).toList();
-  //   } else {
-  //     throw Exception('Failed to load data');
-  //   }
-  // }
+  Future<CharacterContainer> fetchAlbum() async {
+    final response = await http.get(Uri.parse(
+        'https://rickandmortyapi.com/api/character'));
+    if (response.statusCode == 200) {
+      return CharacterContainer.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -92,32 +93,31 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+        child: FutureBuilder<CharacterContainer>(
+          future: fetchAlbum(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data!.results!.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: CircleAvatar(
+                      child: Image.network(
+                          snapshot.data!.results![index].image.toString()
+                      ),
+                    ),
+                    title: Text(snapshot.data!.results![index].name.toString()),
+                    // subtitle: Text(snapshot.data!.results![index].date.toString()),
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,

@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
         child: Column (
-          children: [
+          children: const [
             SizedBox(
               height: 20.0,
             ),
@@ -142,4 +142,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+  // var settings = new ConnectionSettings(
+  //     host: 'localhost',
+  //     port: 3306,
+  //     user: 'bob',
+  //     password: 'wibble',
+  //     db: 'mydb'
+  // );
+  // var conn = await MySqlConnection.connect(settings);
+
 }

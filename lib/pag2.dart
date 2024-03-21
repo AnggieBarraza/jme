@@ -15,13 +15,13 @@ class pag2 extends StatelessWidget{
   Widget build (BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text ("Tabla"),
+        title: const Text ("Tabla"),
       ),
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              Text("Data table", style: TextStyle(fontSize: 30.0),),
+              const Text("Data table", style: TextStyle(fontSize: 30.0),),
               const Divider(
                 height: 20,
                 thickness: 3,
@@ -38,14 +38,14 @@ class pag2 extends StatelessWidget{
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
-                  style: TextStyle(fontSize: 20),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 20),
+                  decoration: const InputDecoration(
                     hintText: "ID"
                   ),
                   keyboardType: TextInputType.number,
                 ),
       ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
 
               Container(
                 decoration:
@@ -54,14 +54,14 @@ class pag2 extends StatelessWidget{
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
+                    style: const TextStyle(fontSize: 20),
+                    decoration: const InputDecoration(
                       hintText: "Titulo",
                     ),
                   ),
               ),
 
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
 
               Container(
                 decoration:
@@ -70,8 +70,8 @@ class pag2 extends StatelessWidget{
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
-                  style: TextStyle(fontSize: 20),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 20),
+                  decoration: const InputDecoration(
                     hintText: "Descripcion"
                   ),
                 ),
@@ -121,7 +121,7 @@ class pag2 extends StatelessWidget{
           );
         },
         child: Column(
-          children: [
+          children: const [
             SizedBox(
               height: 20.0,
             ),

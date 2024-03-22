@@ -22,3 +22,4 @@ samples, guidance on mobile development, and a full API reference.
 - flutter pub get
 - dart run build_runner build  (creates json serialized classes)
 ### Json serializer# jmeJR
+# jme
